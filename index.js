@@ -36,7 +36,7 @@ app.get('/couponValidator', function (req, res) {
       // we just need the coupon code to be wrong to send back a wrong message.
       if (couponTypes[i]['couponCode'] !== req.query.couponCode && i== couponTypes.length-1){
           console.log('bros why you want cheat na?')
-          res.json({'message':'You sent an invalid coupon code','proceed':false})
+          res.json(JSON.stringify({'message':'You sent an invalid coupon code','proceed':false}))
       }
     }
 
@@ -51,12 +51,12 @@ app.get('/couponValidator', function (req, res) {
               if(err)
                 throw err
               console.log('we made it ooo')
-              res.json({'message':'We have successfully validated the tickets','proceed':true,'ticketPrice':data['couponCodeReturnValue']})
+              res.json(({'message':'We have successfully validated the tickets','proceed':true,'ticketPrice':data['couponCodeReturnValue']}))
             })
           }
           else{
             console.log('the window has closed bros')
-            res.json({'message':'We have exhausted the number of tickets for this coupon code. Please try again without the coupon code','proceed':false})
+            res.json(({'message':'We have exhausted the number of tickets for this coupon code. Please try again without the coupon code','proceed':false}))
           }
       })
     }
