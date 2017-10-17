@@ -29,7 +29,7 @@ app.get('/couponValidator', function (req, res) {
     console.log(req.query)
     var matchedCoupon;
     for(var i = 0; i< couponTypes.length; i++){
-      if(couponTypes[i]['couponCodeType'] == req.query.ticketPrice && couponTypes[i]['couponCode'] == req.query.couponCode){
+      if(couponTypes[i]['couponCodeType'] == Number(req.query.ticketPrice) && couponTypes[i]['couponCode'] == req.query.couponCode){
         matchedCoupon = req.query;
         break;
       }
