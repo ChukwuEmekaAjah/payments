@@ -26,6 +26,7 @@ var couponTypes = [
 
 app.get('/couponValidator', function (req, res) {
     // so we now loop through all the possible coupon types
+    console.log(req.query)
     var matchedCoupon;
     for(var i = 0; i< couponTypes.length; i++){
       if(couponTypes[i]['couponCodeType'] == req.query.ticketPrice && couponTypes[i]['couponCode'] == req.query.couponCode){
