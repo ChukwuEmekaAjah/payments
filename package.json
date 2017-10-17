@@ -1,0 +1,14 @@
+{
+  "name": "payments",
+  "engines": {
+    "node": "6.9.5"
+  },
+  "scripts":{
+    "start":"node index.js"
+  },
+  "main": "index.js",
+  "dependencies": {
+   "body-parser": "~1.0.0",   
+   "mongoose": "^4.11.14",
+   "express":"latest" }
+}
