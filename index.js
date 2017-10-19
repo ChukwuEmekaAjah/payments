@@ -65,6 +65,10 @@ app.get('/couponValidator', function (req, res) {
     
 });
 
+app.get('/successful',function(req,res){
+      console.log(req.query)
+})
+
 app.get('/',function(req,res){
   res.send('hello world')
 })
