@@ -1,7 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
 
-var dbUrl = 'mongodb://ajahso4:CRUCIBLE96ajah@ds163494.mlab.com:63494/iamvocal';
 
 mongoose.connect(process.env.dbUrl || dbUrl)
 
@@ -12,7 +11,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-var couponCodes = require('./app/models/coupons.js')
+var couponCodes = require('./app/models/coupons.js');
+var Success = require('./app/models/success.js');
 
 // we first validate it on the server before going to do the computation on the database.
 var couponTypes = [
@@ -67,7 +67,18 @@ app.get('/couponValidator', function (req, res) {
 
 app.get('/successful',function(req,res){
       console.log(req.query)
-      res.send('you have been certified')
+      if(req.query){
+        var newTicket = new Success();
+        newTicket.attendeeName = req.query.attendeeName;
+        newTicket.attendeeEmail = req.query.attendeeEmail;
+        newTicket.ticketCategory = String(req.query.ticketCategory);
+        newTicket.numberOfTicketsBought = Number(req.query.numberOfTicketsBought);
+        newTicket.save(function(err,data){
+          if(err)
+            throw err
+          res.send('Successfully saved the new payment data')
+        })
+      }
 })
 
 app.get('/',function(req,res){
