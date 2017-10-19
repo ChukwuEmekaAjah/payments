@@ -67,6 +67,7 @@ app.get('/couponValidator', function (req, res) {
 
 app.get('/successful',function(req,res){
       console.log(req.query)
+      res.send('you have been certified')
 })
 
 app.get('/',function(req,res){
